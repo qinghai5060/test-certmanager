@@ -1,0 +1,390 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "description": "get all objects",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "objectId"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "create object",
+                "parameters": [
+                    {
+                        "description": "The object content",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "body"
+                        }
+                    }
+                }
+            }
+        },
+        "/:objectId": {
+            "get": {
+                "description": "find object by objectid",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the objectid you want to get",
+                        "name": "objectId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "objectId"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "update the object",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The objectid you want to update",
+                        "name": "objectId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "The body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Object"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "objectId"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete the object",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The objectId you want to delete",
+                        "name": "objectId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "objectId"
+                        }
+                    }
+                }
+            }
+        },
+        "/:uid": {
+            "get": {
+                "description": "get user by uid",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The key for staticblock",
+                        "name": "uid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "uid"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "update the user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The uid you want to update",
+                        "name": "uid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "body for user content",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "uid"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete the user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The uid you want to delete",
+                        "name": "uid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "uid"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "get": {
+                "description": "Logs user into the system",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The username for login",
+                        "name": "username",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "The password for login",
+                        "name": "password",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "user"
+                        }
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "get": {
+                "description": "Logs out current logged in user session",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/ca": {
+            "post": {
+                "description": "create CA",
+                "parameters": [
+                    {
+                        "description": "ca request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CARequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "invalid"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.CARequest": {
+            "type": "object",
+            "properties": {
+                "common_name": {
+                    "type": "string"
+                },
+                "create_at": {
+                    "type": "string"
+                },
+                "is_ca": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "organisation": {
+                    "type": "string"
+                },
+                "signing_algorithm": {
+                    "type": "string"
+                },
+                "uid": {
+                    "type": "string"
+                },
+                "validity": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Object": {
+            "type": "object",
+            "properties": {
+                "objectId": {
+                    "type": "string"
+                },
+                "playerName": {
+                    "type": "string"
+                },
+                "score": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Profile": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "profile": {
+                    "$ref": "#/definitions/models.Profile"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
